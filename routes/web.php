@@ -12,9 +12,19 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('main');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Route::post('surveys', [
+//    'as' => 'survey.post',
+//    'uses' => 'Api\SurveyController@createSurvey'
+//]);
+
+Route::get('offers/get', [
+    'as' => 'offers.get',
+    'uses' => 'OfferController@getOffers'
+]);
