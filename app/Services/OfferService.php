@@ -13,7 +13,6 @@ class OfferService
 
     protected $offerRepository;
 
-
     public function __construct(OfferRepository $_offerRepository, Offer $offer)
     {
         $this->offerRepository = $_offerRepository;

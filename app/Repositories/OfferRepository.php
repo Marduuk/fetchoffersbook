@@ -61,8 +61,18 @@ class OfferRepository implements OfferRepositoryInterface
      * creates an offer
      * @param Offer $offer
      */
-    public function create($offer)
+    public function create($attributes)
     {
-        $offer->save();
+        $this->offer->create($attributes);
+    }
+
+    /**
+     * gets all offers by provider
+     * @param $provider
+     * @return mixed
+     */
+    public function getOffersByProvider($provider)
+    {
+        return $this->offer->getOffers($provider);
     }
 }

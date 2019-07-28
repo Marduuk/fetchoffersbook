@@ -28,4 +28,9 @@ class Offer extends Model
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getOffers($provider)
+    {
+        return $this->where('provider', $provider)->get();
+    }
 }
