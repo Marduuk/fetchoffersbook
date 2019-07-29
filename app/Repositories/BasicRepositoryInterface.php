@@ -32,10 +32,4 @@ interface BasicRepositoryInterface
      * @param array
      */
     public function update($offer_id, array $offer_data);
-
-    /**
-     * deletes overdated offers
-     * @return mixed
-     */
-    public function deleteOverdated();
 }

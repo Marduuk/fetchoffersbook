@@ -24,6 +24,7 @@ class Offer extends Migration
             $table->timestamp('updated_at');
             $table->timestamp('created_at');
             $table->string('code', 15)->unique();
+            $table->string('provider', 25);
         });
     }
     /**

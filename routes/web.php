@@ -19,12 +19,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Route::post('surveys', [
-//    'as' => 'survey.post',
-//    'uses' => 'Api\SurveyController@createSurvey'
-//]);
-
 Route::get('offers/get', [
-    'as' => 'offers.get',
-    'uses' => 'OfferController@getOffers'
+    'as' => 'offers.getAll',
+    'uses' => 'OfferController@getAllOffers'
 ]);
+
+Route::get('offers/fetchexternal', [
+    'as' => 'offers.fetchExternal',
+    'uses' => 'OfferController@fetchOffersFromExternal'
+]);
+

@@ -5,24 +5,26 @@ namespace App\Services;
 interface OfferServiceInterface
 {
     /**
+     * main logic method
+     * @return mixed
+     */
+    public function fetchOffersExternallySaveInDb();
+    /**
      * gets offers from external api
      */
     public function getOffersExternal();
 
     /**
-     * saves fetched offers in database
-     */
-    public function saveFetchedOffers();
-
-    /**
      * gets all offers by provider
+     * @param $provider
      * @return mixed
      */
-    public function getAllOffersByProvider();
+    public function getAllOffersByProvider($provider);
 
     /**
-     * calls repository to delete all overdated job offers
+     * fills the offer model
+     * @param $singleOffer
      * @return mixed
      */
-    public function delteOverdated();
+    public function fillOfferModel($singleOffer);
 }

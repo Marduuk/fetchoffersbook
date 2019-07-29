@@ -8,13 +8,6 @@ use App\Offer;
 
 class OfferRepository implements BasicRepositoryInterface
 {
-
-
-    public function __construct()
-    {
-        //$this->offer = $offer;
-    }
-
     /**
      * Get's a Offer by it's ID
      *
@@ -63,7 +56,6 @@ class OfferRepository implements BasicRepositoryInterface
      */
     public function create($offer)
     {
-
         $offer->save();
     }
 
@@ -74,11 +66,15 @@ class OfferRepository implements BasicRepositoryInterface
      */
     public function getOffersByProvider($provider)
     {
-        return Offer::query()->where('provder',$$provider)->get();
+        return Offer::query()->where('provider', $provider)->get();
     }
 
     public function deleteOverdated()
     {
-        //TODO implement
+        //deleting offers should be executed from the repository level, not the provider specific service
+        //because once we do fetch the offers they do go into our single database table.
+        // Deleting itself should be fired from job
+        //normally offers should be deleted by some expiration date but i made assumption to simplify stuff :)
+        Offer::where('created_at','>', '30 days')->delete();
     }
 }

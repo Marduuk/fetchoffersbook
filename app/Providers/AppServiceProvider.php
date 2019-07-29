@@ -15,7 +15,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind('App\Repositories\BasicRepositoryInterface',
             'App\Repositories\OfferRepository');
-        $this->app->bind('App\Services\OfferService');
+        $this->app->bind('App\Services\OfferServiceInterface',
+            'App\Services\AppManagerService');
     }
 
     /**

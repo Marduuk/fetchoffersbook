@@ -2,28 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Offer;
-use App\Providers\AppServiceProvider as container;
-use App\Services\OfferService;
+use App\Repositories\OfferRepository;
+use App\Services\AppManagerService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class OfferController extends Controller
 {
     /**
-     * @var OfferService
+     * @var AppManagerService
      */
-    var $offerService;
+    var $AppManagerService;
+
+    /**
+     * @var OfferRepository
+     */
+    var $OfferRepository;
 
     /**
      * creates an instance
      * OfferController constructor.
-     * @param OfferService $offerService
+     * @param AppManagerService $AppManagerService
+     * @param OfferRepository $offerRepository
      */
-    public function __construct(OfferService $offerService)
+    public function __construct(AppManagerService $AppManagerService, OfferRepository $offerRepository)
     {
-        $this->offerService = $offerService;
+        $this->AppManagerService = $AppManagerService;
+        $this->OfferRepository = $offerRepository;
     }
 
     /**
@@ -51,24 +56,18 @@ class OfferController extends Controller
         ]);
     }
 
-//    /**
-//     * Create a new user instance after a valid registration.
-//     *
-//     * @param  array  $data
-//     * @return \App\User
-//     */
-//    protected function create(array $data)
-//    {
-//        return Offer::create([
-//            'id' => $data['name'],
-//            'job_name' => $data['email'],
-//            'something' => $data['something'],
-//        ]);
-//    }
-
-
-    public function getOffers(Request $request)
+    /**
+     * gets all offers
+     * @return mixed
+     */
+    public function getAllOffers()
     {
-        return $this->offerService->fetchOffersExternallySaveInDbAndShowToClient();
+        return $this->OfferRepository->all();
+    }
+
+    public function fetchOffersFromExternal()
+    {
+        //normally should be called from a job not a controller
+        return $this->AppManagerService->fetchOffersExternallySaveInDb();
     }
 }
