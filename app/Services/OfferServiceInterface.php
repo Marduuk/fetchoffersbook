@@ -13,4 +13,16 @@ interface OfferServiceInterface
      * saves fetched offers in database
      */
     public function saveFetchedOffers();
+
+    /**
+     * gets all offers by provider
+     * @return mixed
+     */
+    public function getAllOffersByProvider();
+
+    /**
+     * calls repository to delete all overdated job offers
+     * @return mixed
+     */
+    public function delteOverdated();
 }

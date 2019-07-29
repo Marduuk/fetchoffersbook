@@ -76,4 +76,9 @@ class OfferRepository implements BasicRepositoryInterface
     {
         return Offer::query()->where('provder',$$provider)->get();
     }
+
+    public function deleteOverdated()
+    {
+        //TODO implement
+    }
 }
