@@ -9,14 +9,12 @@ use \GuzzleHttp\Client;
 class OfferService
 {
     /** @var OfferRepository  */
-    var $offer;
+     protected $offerRepository;
 
-    protected $offerRepository;
-
-    public function __construct(OfferRepository $_offerRepository, Offer $offer)
+    public function __construct(OfferRepository $_offerRepository)
     {
         $this->offerRepository = $_offerRepository;
-        $this->offer = $offer;
+       // $this->offer = $offer;
     }
 
     public function fetchOffersExternallySaveInDbAndShowToClient()
@@ -34,8 +32,8 @@ class OfferService
 
             if ($offer != null)
                 continue;
-
-            $offer = $this->offer->fill([
+            $offer = new Offer();
+            $offer->fill([
                 'admin_name' => $single['admin_name'],
                 'categories' => $single['categories'][0],
                 'positions' => $single['positions'][0],

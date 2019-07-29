@@ -6,13 +6,13 @@ namespace App\Repositories;
 use App\Offer;
 
 
-class OfferRepository implements OfferRepositoryInterface
+class OfferRepository implements BasicRepositoryInterface
 {
-    protected $offer;
 
-    public function __construct(Offer $offer)
+
+    public function __construct()
     {
-        $this->offer = $offer;
+        //$this->offer = $offer;
     }
 
     /**
@@ -61,9 +61,10 @@ class OfferRepository implements OfferRepositoryInterface
      * creates an offer
      * @param Offer $offer
      */
-    public function create($attributes)
+    public function create($offer)
     {
-        $this->offer->create($attributes);
+
+        $offer->save();
     }
 
     /**
@@ -73,6 +74,6 @@ class OfferRepository implements OfferRepositoryInterface
      */
     public function getOffersByProvider($provider)
     {
-        return $this->offer->getOffers($provider);
+        return Offer::query()->where('provder',$$provider)->get();
     }
 }

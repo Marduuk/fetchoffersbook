@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-interface OfferRepositoryInterface
+interface BasicRepositoryInterface
 {
     /**
      * get offer by id
